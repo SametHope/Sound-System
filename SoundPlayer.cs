@@ -41,8 +41,8 @@ namespace SametHope.SoundSystem
 
         public void Play()
         {
-            if (_usePosition) SoundSystem.Play(Sound, transform.position);
-            else SoundSystem.Play(Sound);
+            if (_usePosition) SoundMaster.Play(Sound, transform.position);
+            else SoundMaster.Play(Sound);
         }
 
         [System.Serializable, System.Flags]

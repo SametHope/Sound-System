@@ -9,12 +9,12 @@ namespace SametHope.SoundSystem
     /// This class allows easy and customizable audio pooling and playback utilizing <see cref="Sound"/> instances.
     /// </summary>
     [DefaultExecutionOrder(-100)]
-    public class SoundSystem : MonoBehaviour
+    public class SoundMaster : MonoBehaviour
     {
         /// <summary>
-        /// Instance of the <see cref="SoundSystem"/>. Useful for calling <see cref="Object.DontDestroyOnLoad(Object)"/> if needed.
+        /// Instance of the <see cref="SoundMaster"/>. Useful for calling <see cref="Object.DontDestroyOnLoad(Object)"/> if needed.
         /// </summary>
-        public static SoundSystem Instance { get; private set; }
+        public static SoundMaster Instance { get; private set; }
 
 
         [field: Tooltip("AudioSource to take as a prefab when creating new instances. Can be null in which case a new gameobject with the component will be created and used.")]
@@ -23,7 +23,7 @@ namespace SametHope.SoundSystem
         private readonly Dictionary<string, Sound> _allSoundsDict = new();
 
         /// <summary>
-        /// Active sources that are created by <see cref="SoundSystem"/> methods and are either playing or paused. Sound is included for optional filtering.
+        /// Active sources that are created by <see cref="SoundMaster"/> methods and are either playing or paused. Sound is included for optional filtering.
         /// <para>Useful for pausing/unpausing or taking other collective actions.</para>
         /// </summary>
         public List<(AudioSource source, Sound sound)> ActiveSounds { get; private set; } = new();
@@ -103,7 +103,7 @@ namespace SametHope.SoundSystem
         {
             if (Instance == null)
             {
-                Instance = new GameObject($"[{nameof(SoundSystem)}]").AddComponent<SoundSystem>();
+                Instance = new GameObject($"[{nameof(SoundMaster)}]").AddComponent<SoundMaster>();
             }
         }
 
